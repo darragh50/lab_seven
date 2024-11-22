@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 import Card from 'react-bootstrap/Card';
+import { Link } from 'react-router-dom';
+
 
 const MovieItem = (props)=> {
   useEffect(() => {
@@ -16,6 +18,8 @@ const MovieItem = (props)=> {
             <footer>{props.mymovie.year}</footer>
           </blockquote>
         </Card.Body>
+        {/**Adds an "Edit" button to each movie item, allowing users to navigate to the edit page for that specific movie*/}
+        <Link to={"/edit/" + props.mymovie._id} className="btn btn-primary">Edit</Link>
       </Card>
     </div>
   );
