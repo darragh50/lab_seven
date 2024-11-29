@@ -14,9 +14,9 @@ const handleDelete = (e) => {
   //Stops it being called multiple times
   e.preventDefault();
   //Call axios to use the http delete function and assign the url + movieID
-    axios.delete('http://localhost:4000/api/movie/' + props.mymovie._id)
+    axios.delete('http://localhost:4000/api/movie/' + props.myMovie._id)
         .then(() => {
-            props.Reload(); //Refresh the movie list after deletion
+            props.Reload(); //Refreshes the movie list by calling the Reload function passed down as a prop
         })
         .catch((error) => {
             console.error("Error deleting movie:", error);
@@ -26,15 +26,15 @@ const handleDelete = (e) => {
   return (
     <div>
       <Card>
-        <Card.Header>{props.mymovie.title}</Card.Header>
+        <Card.Header>{props.myMovie.title}</Card.Header>
         <Card.Body>
           <blockquote className="blockquote mb-0">
-            <img src={props.mymovie.poster} alt={props.mymovie.title} />
-            <footer>{props.mymovie.year}</footer>
+            <img src={props.myMovie.poster} alt={props.myMovie.title} />
+            <footer>{props.myMovie.year}</footer>
           </blockquote>
         </Card.Body>
         {/**Adds an "Edit" button to each movie item, allowing users to navigate to the edit page for that specific movie*/}
-        <Link to={"/edit/" + props.mymovie._id} className="btn btn-primary">Edit</Link>
+        <Link to={"/edit/" + props.myMovie._id} className="btn btn-primary">Edit</Link>
         {/**Button used to delete when clicked - "Danger" is the button style */}
         <Button variant="danger" onClick={handleDelete}>Delete</Button>
       </Card>
