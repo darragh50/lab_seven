@@ -65,6 +65,15 @@ app.post('/api/movies',async (req, res)=>{
     res.status(201).json({"message":"Movie Added!",Movie:newMovie});
 })
 
+//Handel delete requests
+app.delete('/api/movie/:id', async (req, res) => {
+  //Send message about deleting movie
+  console.log('Deleting movie with ID:', req.params.id);
+  const movie = await movieModel.findByIdAndDelete(req.params.id);
+  //Send message to client 
+  res.status(200).send({ message: "Movie deleted successfully", movie });
+})
+
 //Client listening on port.. (4000)
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
